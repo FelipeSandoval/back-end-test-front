@@ -13,7 +13,7 @@ router.post('/',(req, res) => {
           value: req.body.value
       }, 
       (err, counter) => {
-          if (err) return res.status(500).send('There was a problem adding the new counter :C');
+          if (err) return res.status(500).send("There was a problem adding the new counter");
           res.status(200).send(counter);
       });
 });
@@ -21,17 +21,17 @@ router.post('/',(req, res) => {
 // Gets a single Counter (we are not going to use this one)
 router.get('/:id', (req, res) => {
   Counter.findById(req.params.id, (err, counter) => {
-      if (err) return res.status(500).send('There was a problem finding the counter. :C');
-      if (!counter) return res.status(404).send('No counter found.');
+      if (err) return res.status(500).send("There was a problem finding the counter.");
+      if (!counter) return res.status(404).send("No counter found.");
       res.status(200).send(counter);
   });
 });
 
 //Deletes a counter
 router.delete('/:id', (req, res) => {
-  Counter.findByIdAndRemove(req.params.id, (err, counter) => {
-      if (err) return res.status(500).send('There was a problem deleting the counter. :C');
-      res.status(200).send(`Counter ${counter.name}  was deleted.`);
+  Counter.findByIdAndRemove(req.params.id, (err,counter) => {
+      if (err) return res.status(500).send("There was a problem deleting the counter.");
+      res.status(200).send(counter);
   });
 });
 
@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
 // Select all Counters
 router.get('/', (req, res) => {
   Counter.find({}, (err, counters) => {
-      if (err) return res.status(500).send('There was a problem finding our counters :C');
+      if (err) return res.status(500).send("There was a problem finding our counters :C");
       res.status(200).send(counters);
   });
 });
